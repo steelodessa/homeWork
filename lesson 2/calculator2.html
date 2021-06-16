@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      let nameUser = prompt("Привет, меня зовут, Алекс. Как твое имя?");
+      if (
+        confirm("Рад знакомству, " + nameUser + "! Посмотрим мой калькулятор?")
+      ) {
+        let operation = prompt(
+          'Если хочешь сложить, поставь знак "+"\nВычитание знак "-"\nДеление знак "/"\nИ умножение знак "*"'
+        );
+        let numberOne = +prompt("Введи первое число", 0);
+        let numberTwo = +prompt("Введи второе число", 0);
+        let result = {
+          "+": numberOne + numberTwo,
+          "-": numberOne - numberTwo,
+          "*": numberOne * numberTwo,
+          "/": numberOne / numberTwo,
+        }[operation];
+        let output = `${numberOne} ${operation} ${numberTwo} = ${result}`;
+        alert("Получи и распишись\n" + output);
+        console.log(output);
+      } else {
+        alert("Ну и не надо )))))");
+      }
+    </script>
+  </body>
+</html>
