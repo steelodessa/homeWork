@@ -31,3 +31,10 @@ for (let i = 0; i < arr.length; i++) {
   sum += arr[i];
 }
 console.log(sum);
+
+//3 динамический
+let sumTwo = 0;
+for (let key in salaries) {
+  sumTwo += salaries[key];
+}
+console.log(sumTwo);
