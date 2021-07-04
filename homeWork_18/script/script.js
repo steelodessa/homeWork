@@ -1,6 +1,7 @@
 "use strict";
 
 /*
+//Если, что, то считать этот. Второй вариант сделал через switch, почти универсальный, только передавать надо и варианты. В общем, попробовал перевести из php и работает)))
 let age = +prompt("Сколько вам лет?", "");
 if (isNaN(age)) {
   alert("Должно быть число");
@@ -19,7 +20,7 @@ if (isNaN(age)) {
 }
 */
 
-//вариант через switch, почти универсальный
+//2вариант
 function getUnitCase(value, strOne, strTwo, strThree) {
   if (value % 100 >= 11 && value % 100 <= 19) {
     return strThree;
