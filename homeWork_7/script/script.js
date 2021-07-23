@@ -26,12 +26,7 @@ let result7 = a == "test" ? "Верно" : "Неверно";
 let result8 = a === "1" ? "Верно" : "Неверно";
 
 //9
-let result9;
-if (a > 0 && a < 5) {
-  result9 = "Верно";
-} else {
-  result9 = "Неверно";
-}
+let result9 = a > 0 && a < 5 ? "Верно" : "Неверно";
 
 //10
 //let result10 = a == 0 || a == 2 ? (a += 7) : (a /= 10);
