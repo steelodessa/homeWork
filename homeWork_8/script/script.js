@@ -1,15 +1,16 @@
 let yearUser = Number(prompt("Введите год своего рожения", ""));
 let newYear = new Date().getFullYear();
 let age = newYear - yearUser;
+
 if (yearUser) {
   let city = prompt("Укажите город, в котором живете", "");
-  let capitalCity;
-  if (city == "Киев" || city == "Москва" || city == "Минск") {
-    capitalCity = "Ты живешь в столице ";
-  } else {
-    capitalCity = "Ты живешь в городе ";
-  }
   if (city) {
+    let capitalCity;
+    if (city === "Киев" || city === "Москва" || city === "Минск") {
+      capitalCity = "Ты живешь в столице ";
+    } else {
+      capitalCity = "Ты живешь в городе ";
+    }
     let sport = prompt(
       "Ваш любимый вид спорта. Например, Плавание, Бокс или Теннис",
       ""
