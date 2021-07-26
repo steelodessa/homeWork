@@ -1,4 +1,5 @@
 "use strict";
+
 //Проверяем, что введено число
 function validator(value) {
   let result = prompt(value);
