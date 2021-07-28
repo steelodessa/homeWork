@@ -28,17 +28,20 @@ function counter(num = 0, obj) {
 
   function increse() {
     ++countIncCb;
-    return obj.incCb(++count);
+    //return obj.incCb(++count);
+    return obj?.incCb ? obj.incCb(++count) : ++count;
   }
 
   function decrese() {
     ++countDecCb;
-    return obj.decCb(--count);
+    //return obj.decCb(--count);
+    return obj?.decCb ? obj.decCb(--count) : --count;
   }
 
   function get() {
     ++countGetCb;
-    return obj.getCb(count);
+    //return obj.getCb(count);
+    return obj?.getCb ? obj.getCb(count) : count;
   }
 
   function getStatistic() {
