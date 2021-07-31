@@ -106,7 +106,7 @@ myBindFour(personsOffice, personOne)();
 myBindFour(personsOffice, personTwo)();
 
 console.log("---------CALL---------");
-//Создаем собственную функцию call
+//Для себя. Собственная функция call
 function myCall(fn, context, ...args) {
   const uniq = Date.now().toString(); //также создаем уникальный id
   context[uniq] = fn;
@@ -117,7 +117,7 @@ function myCall(fn, context, ...args) {
 myCall(info, person, "1234", "test@gmail.com");
 
 console.log("---------APPLY---------");
-//Создаем собственную функцию apply. Тот же самый call, только по другому происходит передача параметров. Так как apply принимает массив, то ... не используем
+//Для себя Собственная функция apply. Тот же самый call, только по другому происходит передача параметров. Так как apply принимает массив, то ... не используем
 
 function myApply(fn, context, args) {
   const uniq = Date.now().toString(); //также создаем уникальный id
