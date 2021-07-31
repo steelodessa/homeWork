@@ -2,7 +2,7 @@
 
 //Получаем все li в документе
 let ulElement = document.getElementsByTagName("li");
-//console.log(ulElement2);
+//console.log(ulElement);
 
 for (let i of ulElement) {
   console.log(i);
