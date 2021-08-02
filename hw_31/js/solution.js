@@ -1,7 +1,7 @@
 "use strict";
 
 //Получаем все li в документе
-let ulElement = document.getElementsByTagName("li");
+let liElement = document.getElementsByTagName("li");
 //console.log(ulElement);
 
 for (let i of ulElement) {
