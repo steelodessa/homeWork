@@ -113,11 +113,15 @@ generateListTwo(numbersArray);
 */
 //-----------------------------------------------------------------
 //3. Написать функцию, которая выводит таблицу 10 × 10, заполненную числами от 1 до 100
-function createTable3(row = 10, col = 10) {
+
+function createTable(row = 10, col = 10) {
+  let table = document.createElement("tbody");
+  document.body.append(table);
+
   let c = 1;
   for (let i = 0; i < row; i++) {
     let tr = document.createElement("tr");
-    document.body.append(tr);
+    table.append(tr);
     for (let j = 0; j < col; j++) {
       let td = document.createElement("td");
       td.style.padding = "10px";
@@ -130,4 +134,4 @@ function createTable3(row = 10, col = 10) {
   }
 }
 
-createTable3(6, 6);
+createTable(6, 6);
