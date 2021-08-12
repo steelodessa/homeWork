@@ -2,7 +2,7 @@ function showInfo() {
   //Получаем из хранилища объект
   let userInform = localStorage.getItem("saveUserFields");
 
-  //Если объект в LocalStorage есть выводим ul с данными иначе alert, что пользователь впервые на сайте
+  //Если объект в LocalStorage есть выводим ul с данными иначе alert, что пользователь впервые на сайте.
   if (userInform) {
     let div = document.createElement("div");
     div.classList.add("container");

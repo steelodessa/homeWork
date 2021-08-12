@@ -3,7 +3,7 @@ const formInfo = document.getElementById("form"); //получили <form></for
 formInfo.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  //получаем коллекцию всех input
+  //получаем коллекцию всех input.
   let userFields = document.querySelectorAll(
     "#form input, #form select, #form textarea"
   );
