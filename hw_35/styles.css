@@ -1,0 +1,18 @@
+body {
+  min-height: 100vh;
+}
+
+#todo-list:not(:empty) {
+  margin-top: 1rem;
+}
+
+.task {
+  cursor: pointer;
+}
+
+#clear-all {
+  display: none;
+}
+.text-decor {
+  text-decoration: line-through;
+}
