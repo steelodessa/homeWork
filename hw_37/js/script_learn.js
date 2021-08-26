@@ -2,9 +2,11 @@
 
 const DB_NAME = "saved_data";
 
+//ID для <div> одной задачи.
 let itemId = localStorage.itemId ? +localStorage.getItem("itemId") : 1;
 const form = document.getElementById("todoForm");
 const todoItems = document.getElementById("todoItems");
+const delALL = document.getElementById("deleteAll");
 
 function findElement(elements, id) {
   return elements.find(function (element) {
@@ -12,7 +14,7 @@ function findElement(elements, id) {
   });
 }
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   //получаем поля title и body
@@ -25,43 +27,41 @@ form.addEventListener("submit", function (event) {
   }
 
   //создаем и выводим task
-  let template = createTemples(title.value, description.value, itemId);
+  createTemples(title.value, description.value, itemId);
 
   useStorage(title.value, description.value);
 
   event.target.reset();
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+//Событие происходит когда весь HTML загружен. Чтобы при обновлении ничего не пропадало
+document.addEventListener("DOMContentLoaded", () => {
   if (!localStorage[DB_NAME]) return;
 
   let data = JSON.parse(localStorage[DB_NAME]);
 
-  data.forEach(function (item) {
-    const template = createTemples(
-      item.heading,
-      item.content,
-      item.id,
-      item.status
-    );
+  data.forEach((item) => {
+    createTemples(item.title, item.description, item.id, item.status);
   });
+  //console.log(data);
 });
 
 //Событие на изменение checkbox
-todoItems.addEventListener("change", function (e) {
-  const toDoItem = findWrapper(e.target);
-  const toDoItemId = +toDoItem.getAttribute("data-id");
-  const toDoItems = JSON.parse(localStorage[DB_NAME]);
-  const status = e.target.checked;
+todoItems.addEventListener("change", (e) => {
+  const toDoItem = findWrapper(e.target); //получаем <div class="taskWrapper"> задачи, который выделили
+  const toDoItemId = +toDoItem.getAttribute("data-id"); //текущий id задачи
+  const toDoItems = JSON.parse(localStorage[DB_NAME]); //распарсили данные в хранилище
+  const status = e.target.checked; //статус checkbox (true или false)
 
-  const currentToDoItem = findElement(toDoItems, toDoItemId);
-  currentToDoItem.status = status;
+  let currentToDoItem = findElement(toDoItems, toDoItemId); //получили объект для хранилища
+
+  currentToDoItem.status = status; //присвоили ключу status новое значение
 
   localStorage.setItem(DB_NAME, JSON.stringify(toDoItems));
 });
 
 //Удаление  задачи
-todoItems.addEventListener("click", function (e) {
+todoItems.addEventListener("click", (e) => {
   if (!e.target.classList.contains("deleteOneTask")) return;
 
   const toDoItem = findWrapper(e.target);
@@ -77,15 +77,15 @@ todoItems.addEventListener("click", function (e) {
 });
 
 function findWrapper(elem) {
-  elem.hasAttribute("data-id") ? elem : findWrapper(elem.parentElement);
+  return elem.hasAttribute("data-id") ? elem : findWrapper(elem.parentElement);
 }
 
 //данные в хранилище
-function useStorage(heading, content, status = false) {
+function useStorage(title, description, status = false) {
   let toDoItem = {
     id: itemId,
-    heading,
-    content,
+    title,
+    description,
     status,
   };
   ++itemId;
@@ -109,14 +109,17 @@ function createTemples(title, description, id, status = false) {
   const mainWrp = document.createElement("div");
   mainWrp.className = "col-4 mainWrp";
 
+  //Создаем <div> для задачи с классом и атрибутом data-id
   const taskWrp = document.createElement("div");
   taskWrp.className = "taskWrapper";
   taskWrp.setAttribute("data-id", id);
 
+  //Вложенный <div> для Названия задачи - title
   const titleTask = document.createElement("div");
   titleTask.className = "taskHeading";
   titleTask.innerHTML = title;
 
+  //Вложенный <div> для Описания задачи - description
   const descTask = document.createElement("div");
   descTask.className = "taskDescription";
   descTask.innerHTML = description;
@@ -124,9 +127,11 @@ function createTemples(title, description, id, status = false) {
   const label = document.createElement("label");
   label.className = "d-flex justify-content-between align-items-center";
 
+  //<div> для отметки Задача выполнена - completed
   const completed = document.createElement("div");
   completed.innerHTML = "completed";
 
+  //Создаем checkbox
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.name = "completed";
@@ -136,6 +141,7 @@ function createTemples(title, description, id, status = false) {
     checkbox.setAttribute("checked", "checked");
   }
 
+  //Создаем кнопку удаления одной задачи
   const deleteOneTask = document.createElement("button");
   deleteOneTask.className = "btn btn-danger w-100 deleteOneTask";
   deleteOneTask.innerHTML = "Delete task";
@@ -150,17 +156,10 @@ function createTemples(title, description, id, status = false) {
   taskWrp.append(deleteOneTask);
 }
 
-/*
-let deleteAll = document.createElement("button");
-deleteAll.className = "btn btn-danger w-100";
-deleteAll.innerHTML = "Delete All Task";
-form.after(deleteAll);
-querySelector
-*/
-const delALL = document.getElementsByClassName("btn-danger");
-console.log(delALL);
+//Получим все div с классом mainWrp, т.е. наши задачи
 const mainWrapper = document.getElementsByClassName("mainWrp");
 
+//Переберем и удалим , после чего очистим хранилище
 delALL.addEventListener("click", function () {
   for (let i = mainWrapper.length - 1; i >= 0; i--) {
     mainWrapper[i].remove();
