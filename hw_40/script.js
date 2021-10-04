@@ -2,8 +2,8 @@ function Student(name, surname, birthday) {
   this.name = name;
   this.surname = surname;
   this.birthday = birthday;
-  this.attendance = new Array(30);
-  this.appraisal = new Array(30);
+  this.attendance = new Array(10);
+  this.appraisal = new Array(10);
 }
 
 //метод получения возраста студента
@@ -32,19 +32,19 @@ Student.prototype.valueIndexAttendance = function () {
 
 //записываем в индекс массива true
 Student.prototype.present = function () {
-  if (this.valueIndexAttendance() <= 30 && this.valueIndexAttendance() >= 0) {
+  if (this.valueIndexAttendance() <= 10 && this.valueIndexAttendance() >= 0) {
     return (this.attendance[this.valueIndexAttendance()] = true);
   } else {
-    console.log("У вас только 30 занятий");
+    console.log("У вас только 10 занятий");
   }
 };
 
 //записываем в индекс массива false
 Student.prototype.absent = function () {
-  if (this.valueIndexAttendance() <= 30 && this.valueIndexAttendance() >= 0) {
+  if (this.valueIndexAttendance() <= 10 && this.valueIndexAttendance() >= 0) {
     return (this.attendance[this.valueIndexAttendance()] = false);
   } else {
-    console.log("У вас только 30 занятий");
+    console.log("У вас только 10 занятий");
   }
 };
 
@@ -55,10 +55,10 @@ Student.prototype.mark = function (value) {
   );
   if (value > 11 || value <= 0) {
     console.log("Введите оценку от 1 до 10");
-  } else if (valueIndexAppraisal >= 0 && valueIndexAppraisal <= 30) {
+  } else if (valueIndexAppraisal >= 0 && valueIndexAppraisal <= 10) {
     return (this.appraisal[valueIndexAppraisal] = value);
   } else {
-    console.log("У вас только 30 занятий");
+    console.log("У вас только 10 занятий");
   }
 };
 
